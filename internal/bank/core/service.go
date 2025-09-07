@@ -115,3 +115,10 @@ func (s *BankingService) Transfer(ctx context.Context, from, to AccountID, amoun
 	return ta, src, dst, nil
 }
 
+func (s *BankingService) Transactions(ctx context.Context, accID AccountID) ([]*Transaction, error) {
+	return s.tas.ByAccount(ctx, accID)
+}
+
+func (s *BankingService) Accounts(ctx context.Context) ([]*Account, err) {
+	return s.accounts.List(ctx)
+}
