@@ -7,12 +7,12 @@ import (
 "
 )
 
-type MemBooks struct {
+type MemBooks struct{
 	mu sync.RWMutex
 	data map[core.BookID]*core.Book
 }
 
-type MemUsers struct {
+type MemUsers struct{
 	mu sync.RWMutex
 	data map[core.UserID]*core.User
 }

@@ -7,7 +7,7 @@ import (
 "
 )
 
-type Handler struct {
+type Handler struct{
 	svc *core.BookService
 }
 
@@ -30,7 +30,7 @@ func (h *Handler) Register(e *echo.Echo) {
 
 // implemet handler functions
 func (h *Handler) addBook(c echo.Context) error {
-	var req struct {
+	var req struct{
 		Title string
 		Author string
 	}
@@ -75,7 +75,7 @@ func (h *Hnadler) listUsers(c echo.Context) error {
 }
 
 func (h *Handler) borrrow(c echo.Context) error {
-	var req struct {
+	var req struct{
 		UserID: string,
 		BookID: string
 	}
