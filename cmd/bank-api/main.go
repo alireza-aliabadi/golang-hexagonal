@@ -41,7 +41,7 @@ func main() {
 	e.HideBanner = true
 	e.Use(middleware.Logger(), middleware.Recover())
 
-	h := bankHttp.newHandler(svc)
+	h := bankHttp.NewHandler(svc)
 	h.Register(e)
 
 	e.Logger.Fatal(e.Start(":8080"))

@@ -13,7 +13,7 @@ type Handler struct {
 }
 
 // creator function
-func newHandler(s *core.BankingService) *Handler {
+func NewHandler(s *core.BankingService) *Handler {
 	return &Handler{svc: s}
 }
 
@@ -33,7 +33,7 @@ func (h *Handler) createAccount(c echo.Context) error {
 	if err := c.Bind(&body); err != nil || body.Owner == "" {
 		return echo.NewHTTPError(http.StatusBadRequest, "owner isn't provided")
 	}
-	acc, err := h.svc.CreateAccount(c.Request().Context(), body.owner)
+	acc, err := h.svc.CreateAccount(c.Request().Context(), body.Owner)
 	if err != nil {
 		return echo.NewHTTPError(http.StatusBadRequest, err.Error())
 	}
@@ -42,7 +42,7 @@ func (h *Handler) createAccount(c echo.Context) error {
 
 
 func (h *Handler) listAccounts(c echo.Context) error {
-	accs, err := h.svc.Accounts(c.Request().Context())
+	accounts, err := h.svc.Accounts(c.Request().Context())
 	if err != nil {
 		return echo.NewHTTPError(http.StatusInternalServerError, "failed")
 	}
@@ -65,7 +65,7 @@ func (h *Handler) deposit(c echo.Context) error {
 	}
 	return c.JSON(http.StatusOK, map[string]any{
 		"transaction": ta,
-		"account": acc,honnamkuan.golang-snippets 
+		"account": acc, 
 		"when": time.Now().UTC(),
 	})
 }

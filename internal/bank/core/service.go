@@ -33,7 +33,7 @@ func NewBankingService(a AccountReport, t TaReport, clock Clock, ids GenID) *Ban
 		accounts: a,
 		tas: t,
 		clock: clock,
-		ids: ids
+		ids: ids,
 	}
 }
 
@@ -45,7 +45,7 @@ func (s *BankingService) CreateAccount(ctx context.Context, owner string) (*Acco
 	acc := &Account {
 		ID: s.ids.AccountID(),
 		Owner: owner,
-		Balance: 0
+		Balance: 0,
 	}
 	if err := s.accounts.Save(ctx, acc); err != nil {
 		return nil, err
@@ -70,7 +70,7 @@ func (s *BankingService) Deposit(ctx context.Context, to AccountID, amount int64
 		To: &to,
 		Amount: amount,
 		Note: strings.TrimSpace(note),
-		CreatedAt: s.clock.Now()
+		CreatedAt: s.clock.Now(),
 	}
 	if err := s.tas.Add(ctx, ta); err != nil {
 		return nil, nil, err
@@ -105,9 +105,9 @@ func (s *BankingService) Transfer(ctx context.Context, from, to AccountID, amoun
 		ID: s.ids.TaID(),
 		From: &from,
 		To: &to,
-		Amount: amount
+		Amount: amount,
 		Note: strings.TrimSpace(note),
-		CreatedAt: s.clock.Now()
+		CreatedAt: s.clock.Now(),
 	}
 	if err := s.tas.Add(ctx, ta); err != nil {
 		return nil, nil, nil, err
@@ -119,6 +119,6 @@ func (s *BankingService) Transactions(ctx context.Context, accID AccountID) ([]*
 	return s.tas.ByAccount(ctx, accID)
 }
 
-func (s *BankingService) Accounts(ctx context.Context) ([]*Account, err) {
+func (s *BankingService) Accounts(ctx context.Context) ([]*Account, error) {
 	return s.accounts.List(ctx)
 }

@@ -28,7 +28,7 @@ func NewInvoiceService(r Repo, c Clock, ids IDGen) *InvoiceService {
 }
 
 // methods implementation
-func (svc *InvoiceService) Create(ctx context.Context, client string, amount int64) {
+func (svc *InvoiceService) Create(ctx context.Context, client string, amount int64) (*Invoice, error) {
 	client = strings.TrimSpace(client)
 	if client == "" || amount <= 0 {
 		return nil, ErrInvalid

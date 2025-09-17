@@ -2,7 +2,6 @@ package http
 
 import (
 	"net/http"
-	"strconv"
 	"github.com/alireza-aliabadi/golang-hexagonal/internal/invoice/core"
 	"github.com/labstack/echo/v4"
 )
@@ -14,7 +13,7 @@ type Handler struct{
 // builder function
 func NewHandler(s *core.InvoiceService) *Handler {
 	return &Handler{
-		svc: s
+		svc: s,
 	}
 }
 
@@ -28,8 +27,8 @@ func (h *Handler) Register(e *echo.Echo) {
 // implement handlers
 func (h *Handler) create(c echo.Context) error {
 	var req struct{
-		Client: string `json:"client"`
-		Amount: int64 `json:"amount"`
+		Client string `json:"client"`
+		Amount int64 `json:"amount"`
 	}
 	if err := c.Bind(&req); err != nil || req.Client == "" || req.Amount <= 0 {
 		return echo.NewHTTPError(http.StatusBadRequest, "client ans positive amount are required.")

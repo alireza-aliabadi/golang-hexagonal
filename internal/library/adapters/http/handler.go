@@ -3,8 +3,7 @@ package http
 import (
 	"net/http"
 	"github.com/labstack/echo/v4"
-	"github.com/alireza-aliabadi/golang-hexagonal/internal/library/core
-"
+	"github.com/alireza-aliabadi/golang-hexagonal/internal/library/core"
 )
 
 type Handler struct{
@@ -14,13 +13,13 @@ type Handler struct{
 // builder function
 func NewHandler(s *core.BookService) *Handler {
 	return &Handler{
-		svc: s
+		svc: s,
 	}
 }
 
 // echo routes registeration method
 func (h *Handler) Register(e *echo.Echo) {
-	e.Post("/books", h.addBook)
+	e.POST("/books", h.addBook)
 	e.GET("/books", h.listBooks)
 	e.POST("/users", h.addUser)
 	e.GET("/users", h.listUsers)
@@ -66,7 +65,7 @@ func (h * Handler) addUser(c echo.Context) error {
 	return c.JSON(http.StatusCreated, u)
 }
 
-func (h *Hnadler) listUsers(c echo.Context) error {
+func (h *Handler) listUsers(c echo.Context) error {
 	users, err := h.svc.ListUsers(c.Request().Context())
 	if err != nil {
 		return echo.NewHTTPError(http.StatusInternalServerError, "failed to fetch data")
@@ -74,10 +73,10 @@ func (h *Hnadler) listUsers(c echo.Context) error {
 	return c.JSON(http.StatusOK, users)
 }
 
-func (h *Handler) borrrow(c echo.Context) error {
+func (h *Handler) borrow(c echo.Context) error {
 	var req struct{
-		UserID: string,
-		BookID: string
+		UserID string
+		BookID string
 	}
 	if err := c.Bind(&req); err != nil {
 		return echo.NewHTTPError(http.StatusBadRequest, "invalid body")

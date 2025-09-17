@@ -27,7 +27,7 @@ func NewBookService(br BookRepo, ur UserRepo, ids IDGen) *BookService {
 	}
 }
 
-func (bs *BookService) AddBook(ctx context.Context, title, author string) (*Book, errot) {
+func (bs *BookService) AddBook(ctx context.Context, title, author string) (*Book, error) {
 	title, author = strings.TrimSpace(title), strings.TrimSpace(author)
 	if title == "" || author == "" {
 		return nil, ErrInvalid
@@ -45,13 +45,13 @@ func (bs *BookService) AddBook(ctx context.Context, title, author string) (*Book
 }
 
 func (bs *BookService) RegisterUser(ctx context.Context, name string) (*User, error) {
-	name := strings.TrimSpace(name)
+	name = strings.TrimSpace(name)
 	if name == "" {
 		return nil, ErrInvalid
 	}
 	user := &User{
 		ID: bs.ids.UserID(),
-		Name: name
+		Name: name,
 	}
 	if err := bs.users.Save(ctx, user); err != nil {
 		return nil, err

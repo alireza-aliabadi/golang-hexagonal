@@ -20,10 +20,10 @@ func randHex(n int) string {
 }
 
 func (randID) BookID() core.BookID {
-	return core.BookID("book-", randHex(8))
+	return core.BookID("book-" + randHex(8))
 }
 func (randID) UserID() core.UserID {
-	return core.UserID("user-", randHex(8))
+	return core.UserID("user-" + randHex(8))
 }
 
 func main() {

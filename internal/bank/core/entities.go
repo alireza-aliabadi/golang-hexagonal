@@ -6,7 +6,7 @@ type AccountID string
 // TaID -> Transaction ID
 type TaID string
 
-type Acoount struct {
+type Account struct {
 	ID AccountID `json:"id"`
 	Owner string `json:"owner"`
 	Balance int64 `json:"balance"`
@@ -18,7 +18,7 @@ type Transaction struct {
 	To *AccountID `json:"to,omitempty"`
 	Amount int64 `json:"amount"`
 	Note string `json:"note,omitempty"`
-	CreatedAt time.time `json:"created_at"`
+	CreatedAt time.Time `json:"created_at"`
 }
 
 func (a *Account) Recieve(amount int64) {

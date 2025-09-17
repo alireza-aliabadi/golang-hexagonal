@@ -14,7 +14,7 @@ type MemRepo struct{
 // builder function
 func NewMemRepo() *MemRepo {
 	return &MemRepo{
-		data: make(map[core.InvoiceID]*core.Invoice)
+		data: make(map[core.InvoiceID]*core.Invoice),
 	}
 }
 
