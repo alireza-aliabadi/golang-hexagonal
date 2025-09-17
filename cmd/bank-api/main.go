@@ -7,9 +7,9 @@ import (
 	"github.com/labstack/echo/v4"
     "github.com/labstack/echo/v4/middleware"
 
-	bankHttp "github.com/alireza-aliabadi/golang-hexagonal/inernal/bank/adapters/http"
-	bankMem "github.com/alireza-aliabadi/golang-hexagonal/inernal/bank/adapters/repo"
-	"github.com/alireza-aliabadi/golang-hexagonal/inernal/bank/core"
+	bankHttp "github.com/alireza-aliabadi/golang-hexagonal/internal/bank/adapters/http"
+	bankMem "github.com/alireza-aliabadi/golang-hexagonal/internal/bank/adapters/repo"
+	"github.com/alireza-aliabadi/golang-hexagonal/internal/bank/core"
 )
 
 type sysClock struct {}

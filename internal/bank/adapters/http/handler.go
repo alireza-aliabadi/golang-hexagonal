@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"net/http"
 	"time"
-	"github.com/alireza-aliabadi/golang-hexagonal/inernal/bank/core"
+	"github.com/alireza-aliabadi/golang-hexagonal/internal/bank/core"
 	"github.com/labstack/echo/v4"
 )
 

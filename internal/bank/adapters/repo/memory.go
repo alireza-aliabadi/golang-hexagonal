@@ -3,7 +3,7 @@ package repo
 import (
 	"context"
 	"sync"
-	"github.com/alireza-aliabadi/golang-hexagonal/inernal/bank/core"
+	"github.com/alireza-aliabadi/golang-hexagonal/internal/bank/core"
 )
 
 type MemAccounts struct {
